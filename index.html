@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta name="format-detection" content="telephone=no, email=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+        .wrap{
+            width: 310px;
+            height: 400px;
+            background: #535b5b;
+            color:white;
+            padding: 20px;
+        }
+        .p:after{
+            display: block;
+            clear: both;
+            content: '';
+        }
+        .p>span{
+            float: right;
+        }
+        .box{
+            width:100%;
+            color: black;
+        }
+        .box>.ul{
+            width: 100%;
+            background: white;
+            padding-left: 2px;
+            display: none;
+        }
+        .box>.ul>li{
+            /*width: 100%;*/
+            height: 20px;
+            line-height: 20px;
+            text-indent: 5px;
+            cursor: pointer;
+        }
+        .box>.ul>li:hover{
+            background: rgba(2, 149, 239 , 0.5);
+        }
+        .box>div{
+            width: 100%;
+            height: 40px;
+            background: white;
+            border: 1px solid grey;
+            margin-top: 30px;
+        }
+        .box>div>input{
+            width: 65%;
+            height: 100%;
+            padding-left: 5px;
+            border: none;
+            outline: none;
+            text-decoration: none;
+        }
+        .box>div>.span{
+            width: 15%;
+            display: inline-block;
+            text-align: center;
+            margin-left: 20px;
+            border-left: 1px solid grey;
+            cursor: pointer;
+        }
+        h5{
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <h2>快速搜索消费贷款</h2>
+    <p class="p">分款全额：<span>不足一万元可用小数表示</span></p>
+    <div class="box" id="box1">
+        <div><input type="text" id="input1" class="inp"><span>万元</span><span class="span" id="span1">点击</span></div>
+        <ul class="ul" id="ul1">
+            <li>5万元</li>
+            <li>9万元</li>
+            <li>8万元</li>
+            <li>7万元</li>
+            <li>6万元</li>
+        </ul>
+    </div>
+    <div class="box" id="box2">
+        <div><input type="text" id="input2" class="inp"><span class="span1">月份</span><span class="span" id="span2">点击</span></div>
+        <ul class="ul" id="ul2">
+            <li>5月份</li>
+            <li>9月份</li>
+            <li>8月份</li>
+            <li>7月份</li>
+            <li>6月份</li>
+        </ul>
+    </div>
+    <h5>中信银行贷款</h5>
+</div>
+</body>
+</html>
+<script src="js/jquery-3.1.1.min.js"></script>
+<script>
+    $.fn.change=function(){
+        var span=this.find(".span");
+        var box=this
+        var ul=this.find(".ul");
+        var inp=this.find(".inp")
+        var li=this.find(".ul>li")
+        var span1=this.find(".span1")
+        span.click(function () {
+            box.find(ul).stop().slideToggle();
+        })
+        ul.on("click","li",function () {
+            var con=$(this).html()
+            inp.val(parseInt(con))
+//            span1.html(con)
+//            console.log(typeof (con))
+            box.find(ul).stop().slideToggle();
+        })
+    }
+    $(function () {
+        $("#box1").change();
+        $("#box2").change();
+    })
+</script>
